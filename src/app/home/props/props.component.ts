@@ -204,11 +204,15 @@ export class PropsComponent implements OnInit, OnChanges {
       },
       {
         id: '2',
+<<<<<<< HEAD
         name: '圆点'
       },
       {
         id: '3',
         name: '彗星'
+=======
+        name: '流星'
+>>>>>>> 3b0cff0ea89657d4a3680857603b6ee98a2f7fa2
       }
     ]
   };

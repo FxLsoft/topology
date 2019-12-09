@@ -1,11 +1,11 @@
 import { Pen } from './pen';
+import { Rect } from './rect';
 import { Point } from './point';
 import { drawLineFns, drawArrowFns } from '../middles';
 import { getBezierPoint } from '../middles/lines/curve';
 import { Store } from 'le5le-store';
 import { lineLen, curveLen } from '../utils';
 import { text } from '../middles/nodes/text';
-import { Rect } from './rect';
 
 export class Line extends Pen {
   from: Point;
@@ -17,7 +17,11 @@ export class Line extends Pen {
   length: number;
 
   borderWidth = 0;
-  borderColor = '#000000';
+  borderColor = '#000';
+
+  text: string;
+  textMaxLine: number;
+  textRect: Rect;
 
   animateColor = '';
   animateSpan = 1;
@@ -292,6 +296,7 @@ export class Line extends Pen {
 
   animate() {
     this.animatePos += this.animateSpan;
+<<<<<<< HEAD
     this.animateDot = null;
     switch (this.animateType) {
       case '1':
@@ -311,6 +316,25 @@ export class Line extends Pen {
       default:
         this.lineDash = [this.animatePos, this.length - this.animatePos + 1];
         break;
+=======
+    if (this.bubbles.length > 0) {
+       this.bubbles = [];
+    }
+    if (+this.animateType === 1) {
+      this.lineDashOffset = -this.animatePos;
+      this.lineDash = [this.lineWidth, this.lineWidth * 2];
+    } else if (+this.animateType === 2) {
+      if (this.lineDash) {
+        this.lineDash = null;
+      }
+      const tailLength = 30;
+      for (let i = 0; i < tailLength; i++) {
+        const curPt = this.getPointByLength(this.animatePos - i * (this.animateSpan + 1));
+        this.bubbles.push(curPt);
+      }
+    } else {
+      this.lineDash = [this.animatePos, this.length - this.animatePos + 1];
+>>>>>>> 3b0cff0ea89657d4a3680857603b6ee98a2f7fa2
     }
     if (this.animatePos > this.length + this.animateSpan) {
       if (++this.animateCycleIndex >= this.animateCycle && this.animateCycle > 0) {
