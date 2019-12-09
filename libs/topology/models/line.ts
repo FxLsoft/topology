@@ -296,7 +296,6 @@ export class Line extends Pen {
 
   animate() {
     this.animatePos += this.animateSpan;
-<<<<<<< HEAD
     this.animateDot = null;
     switch (this.animateType) {
       case '1':
@@ -316,25 +315,6 @@ export class Line extends Pen {
       default:
         this.lineDash = [this.animatePos, this.length - this.animatePos + 1];
         break;
-=======
-    if (this.bubbles.length > 0) {
-       this.bubbles = [];
-    }
-    if (+this.animateType === 1) {
-      this.lineDashOffset = -this.animatePos;
-      this.lineDash = [this.lineWidth, this.lineWidth * 2];
-    } else if (+this.animateType === 2) {
-      if (this.lineDash) {
-        this.lineDash = null;
-      }
-      const tailLength = 30;
-      for (let i = 0; i < tailLength; i++) {
-        const curPt = this.getPointByLength(this.animatePos - i * (this.animateSpan + 1));
-        this.bubbles.push(curPt);
-      }
-    } else {
-      this.lineDash = [this.animatePos, this.length - this.animatePos + 1];
->>>>>>> 3b0cff0ea89657d4a3680857603b6ee98a2f7fa2
     }
     if (this.animatePos > this.length + this.animateSpan) {
       if (++this.animateCycleIndex >= this.animateCycle && this.animateCycle > 0) {
